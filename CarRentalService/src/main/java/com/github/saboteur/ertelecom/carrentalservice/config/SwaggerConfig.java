@@ -19,7 +19,7 @@ public class SwaggerConfig {
     Docket api() {
         ApiInfo info = new ApiInfo(
             "Car Rental Service API",
-            "This service automate car rental processes",
+            "This service automates car rental processes",
             API_VERSION,
             ApiInfo.DEFAULT.getTermsOfServiceUrl(),
             ApiInfo.DEFAULT.getContact(),
