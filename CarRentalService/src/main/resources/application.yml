@@ -1,7 +1,10 @@
 server:
   port: ${SERVER_PORT:8841}
 
-#spring:
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
 #  flyway:
 #    enabled: true
 #    baseline-on-migrate: true

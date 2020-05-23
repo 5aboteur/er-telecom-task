@@ -19,7 +19,7 @@ public class PostgresConfig {
 
     @Bean
 //    @FlywayDataSource
-    DataSource getPostgresDataSource() {
+    public DataSource dataSource() {
         return new HikariDataSource(postgresProperties);
     }
 

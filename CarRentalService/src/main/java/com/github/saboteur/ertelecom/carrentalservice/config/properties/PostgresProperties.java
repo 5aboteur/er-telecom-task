@@ -12,11 +12,4 @@ import javax.sql.DataSource;
 @Primary
 @Component
 @ConfigurationProperties(prefix = "app.postgres")
-public class PostgresProperties extends HikariConfig {
-
-    @Bean
-    public DataSource dataSource() {
-        return new HikariDataSource(this);
-    }
-
-}
+public class PostgresProperties extends HikariConfig { }
