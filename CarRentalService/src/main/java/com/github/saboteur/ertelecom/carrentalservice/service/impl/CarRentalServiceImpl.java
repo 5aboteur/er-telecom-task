@@ -2,13 +2,10 @@ package com.github.saboteur.ertelecom.carrentalservice.service.impl;
 
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.OrganizationMapper;
-import com.github.saboteur.ertelecom.carrentalservice.model.Organization;
 import com.github.saboteur.ertelecom.carrentalservice.repository.OrganizationRepository;
 import com.github.saboteur.ertelecom.carrentalservice.service.CarRentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CarRentalServiceImpl implements CarRentalService {
