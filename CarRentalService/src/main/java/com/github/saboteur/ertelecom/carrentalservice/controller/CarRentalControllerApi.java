@@ -42,7 +42,7 @@ public interface CarRentalControllerApi {
     @ApiOperation(value = "Get organization info by ID")
     @GetMapping("/carrental/organization/get")
     ResponseEntity<OrganizationDto> getOrganization(
-        @ApiParam(value = "Organization ID", required = true)
+        @ApiParam(value = "Organization ID", required = true, example = "666")
         @RequestParam(value = "organizationId")
         Long organizationId
     );
@@ -50,7 +50,7 @@ public interface CarRentalControllerApi {
     @ApiOperation(value = "Update organization info")
     @PutMapping("/carrental/organization/update")
     ResponseEntity<Boolean> updateOrganization(
-        @ApiParam(value = "Organization ID", required = true)
+        @ApiParam(value = "Organization ID", required = true, example = "666")
         @RequestParam(value = "organizationId")
         Long organizationId,
 
@@ -62,7 +62,7 @@ public interface CarRentalControllerApi {
     @ApiOperation(value = "Delete organization info")
     @DeleteMapping("/carrental/organization/delete")
     ResponseEntity<Boolean> deleteOrganization(
-        @ApiParam(value = "Organization ID", required = true)
+        @ApiParam(value = "Organization ID", required = true, example = "666")
         @RequestParam(value = "organizationId")
         Long organizationId
     );
