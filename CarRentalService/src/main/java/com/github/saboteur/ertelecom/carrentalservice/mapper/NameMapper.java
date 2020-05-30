@@ -32,9 +32,9 @@ public class NameMapper implements Mapper<Name, String> {
             throw new IllegalArgumentException("You should provide a full name");
 
         return new Name(
-            words[0],
             words[1],
-            words[2]
+            words[2],
+            words[0]
         );
     }
 
