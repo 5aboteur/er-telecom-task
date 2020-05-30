@@ -4,15 +4,15 @@ public class RentInfoDto {
     private String branchCode;
     private String dateStart;
     private String dateEnd;
-    private String tenantFullName;
+    private String renterFullName;
 
     public RentInfoDto() { }
 
-    public RentInfoDto(String branchCode, String dateStart, String dateEnd, String tenantFullName) {
+    public RentInfoDto(String branchCode, String dateStart, String dateEnd, String renterFullName) {
         this.branchCode = branchCode;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
-        this.tenantFullName = tenantFullName;
+        this.renterFullName = renterFullName;
     }
 
     public String getBranchCode() {
@@ -27,7 +27,7 @@ public class RentInfoDto {
         return dateEnd;
     }
 
-    public String getTenantFullName() {
-        return tenantFullName;
+    public String getRenterFullName() {
+        return renterFullName;
     }
 }

@@ -26,15 +26,15 @@ public class RentInfo extends BaseModel {
     private LocalDateTime dateEnd;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Name tenantFullName;
+    private Name renterFullName;
 
     public RentInfo() { }
 
-    public RentInfo(String branchCode, LocalDateTime dateStart, LocalDateTime dateEnd, Name tenantFullName) {
+    public RentInfo(String branchCode, LocalDateTime dateStart, LocalDateTime dateEnd, Name renterFullName) {
         this.branchCode = branchCode;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
-        this.tenantFullName = tenantFullName;
+        this.renterFullName = renterFullName;
     }
 
     public String getBranchCode() {
@@ -49,8 +49,8 @@ public class RentInfo extends BaseModel {
         return dateEnd;
     }
 
-    public Name getTenantFullName() {
-        return tenantFullName;
+    public Name getRenterFullName() {
+        return renterFullName;
     }
 
 }

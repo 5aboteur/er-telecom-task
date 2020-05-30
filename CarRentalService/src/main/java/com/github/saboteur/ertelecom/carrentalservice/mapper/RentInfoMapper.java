@@ -21,7 +21,7 @@ public class RentInfoMapper implements Mapper<RentInfo, RentInfoDto> {
             entity.getBranchCode(),
             localDateTimeMapper.convertToString(entity.getDateStart()),
             localDateTimeMapper.convertToString(entity.getDateEnd()),
-            nameMapper.convertToDto(entity.getTenantFullName())
+            nameMapper.convertToDto(entity.getRenterFullName())
         );
     }
 
@@ -31,7 +31,7 @@ public class RentInfoMapper implements Mapper<RentInfo, RentInfoDto> {
             dto.getBranchCode(),
             localDateTimeMapper.convertToLocalDateTime(dto.getDateStart()),
             localDateTimeMapper.convertToLocalDateTime(dto.getDateEnd()),
-            nameMapper.convertToEntity(dto.getTenantFullName())
+            nameMapper.convertToEntity(dto.getRenterFullName())
         );
     }
 
