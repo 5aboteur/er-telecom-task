@@ -1,6 +1,12 @@
 server:
   port: ${SERVER_PORT:8841}
 
+logging:
+  level:
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+    org: INFO
+
 spring:
   jpa:
     hibernate:

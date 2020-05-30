@@ -4,12 +4,15 @@ import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.OrganizationMapper;
 import com.github.saboteur.ertelecom.carrentalservice.repository.OrganizationRepository;
 import com.github.saboteur.ertelecom.carrentalservice.service.CarRentalService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CarRentalServiceImpl implements CarRentalService {
+
+    final static Logger logger = Logger.getLogger(CarRentalServiceImpl.class);
 
     @Autowired
     private OrganizationMapper organizationMapper;
@@ -24,6 +27,7 @@ public class CarRentalServiceImpl implements CarRentalService {
                 .save(organizationMapper.convertToEntity(organizationDto))
                 .getId();
         } catch (IllegalArgumentException e) {
+            logger.error("Error creating organization: " + e.getLocalizedMessage());
             return -1L;
         }
     }
