@@ -27,12 +27,23 @@ public class RentInfoMapper implements Mapper<RentInfo, RentInfoDto> {
 
     @Override
     public RentInfo convertToEntity(RentInfoDto dto) {
+        if (allDtoParametersAreNull(dto))
+            throw new IllegalArgumentException("A rent info requires full information");
+
         return new RentInfo(
             dto.getBranchCode(),
             localDateTimeMapper.convertToLocalDateTime(dto.getDateStart()),
             localDateTimeMapper.convertToLocalDateTime(dto.getDateEnd()),
             nameMapper.convertToEntity(dto.getRenterFullName())
         );
+    }
+
+    private boolean allDtoParametersAreNull(RentInfoDto dto) {
+        return dto == null
+            || dto.getBranchCode() == null
+            || dto.getDateStart() == null
+            || dto.getDateEnd() == null
+            || dto.getRenterFullName() == null;
     }
 
 }

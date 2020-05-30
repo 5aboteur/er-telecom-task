@@ -11,13 +11,13 @@ import java.util.List;
 @Table(name = "organizations")
 public class Organization extends BaseModel {
 
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "inn")
+    @Column(name = "inn", nullable = false, unique = true)
     private String inn;
 
     @OneToMany(cascade = CascadeType.ALL)

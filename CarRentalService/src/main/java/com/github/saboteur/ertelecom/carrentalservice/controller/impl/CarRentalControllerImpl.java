@@ -21,7 +21,7 @@ public class CarRentalControllerImpl implements CarRentalControllerApi {
         Long createdId = carRentalService.createOrganization(organizationDto);
         return ResponseEntity
             .status(
-                createdId == 0
+                createdId == -1 || createdId == 0
                     ? HttpStatus.BAD_REQUEST
                     : HttpStatus.CREATED
             )

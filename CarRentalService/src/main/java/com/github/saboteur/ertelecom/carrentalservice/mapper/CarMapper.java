@@ -18,24 +18,31 @@ public class CarMapper implements Mapper<Car, CarDto> {
         return new CarDto(
             entity.getBrand(),
             entity.getNumber(),
-            entity
-                .getRentHistory()
-                .stream()
-                .map(rentInfoMapper::convertToDto)
-                .collect(Collectors.toList())
+            entity.getRentHistory() == null
+                ? null
+                : entity
+                    .getRentHistory()
+                    .stream()
+                    .map(rentInfoMapper::convertToDto)
+                    .collect(Collectors.toList())
         );
     }
 
     @Override
     public Car convertToEntity(CarDto dto) {
+        if (dto == null || dto.getBrand() == null || dto.getNumber() == null)
+            throw new IllegalArgumentException("A car requires 'brand' and 'number' information");
+
         return new Car(
             dto.getBrand(),
             dto.getNumber(),
-            dto
-                .getRentHistory()
-                .stream()
-                .map(rentInfoMapper::convertToEntity)
-                .collect(Collectors.toList())
+            dto.getRentHistory() == null
+                ? null
+                : dto
+                    .getRentHistory()
+                    .stream()
+                    .map(rentInfoMapper::convertToEntity)
+                    .collect(Collectors.toList())
         );
     }
 

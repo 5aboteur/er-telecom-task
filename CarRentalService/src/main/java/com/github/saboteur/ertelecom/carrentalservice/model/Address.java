@@ -8,10 +8,10 @@ import javax.persistence.Table;
 @Table(name = "addresses")
 public class Address extends BaseModel {
 
-    @Column(name = "street")
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "number")
+    @Column(name = "number", nullable = false)
     private String number;
 
     @Column(name = "postal_code")

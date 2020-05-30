@@ -18,6 +18,9 @@ public class AddressMapper implements Mapper<Address, AddressDto> {
 
     @Override
     public Address convertToEntity(AddressDto dto) {
+        if (dto == null || dto.getStreet() == null || dto.getNumber() == null)
+            throw new IllegalArgumentException("An address requires 'street' and 'number' information");
+
         return new Address(
             dto.getStreet(),
             dto.getNumber(),

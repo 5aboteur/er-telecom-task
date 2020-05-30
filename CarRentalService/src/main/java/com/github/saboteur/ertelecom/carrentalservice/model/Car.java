@@ -16,10 +16,10 @@ public class Car extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY)
     private Organization organization;
 
-    @Column(name = "brand")
+    @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(name = "number")
+    @Column(name = "number", nullable = false, unique = true)
     private String number;
 
     @OneToMany(cascade = CascadeType.ALL)

@@ -10,20 +10,20 @@ import javax.persistence.Table;
 @Table(name = "locations")
 public class Location extends BaseModel {
 
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "state")
-    private String state;
+    @Column(name = "region")
+    private String region;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public Location() { }
 
-    public Location(String city, String state, Address address) {
+    public Location(String city, String region, Address address) {
         this.city = city;
-        this.state = state;
+        this.region = region;
         this.address = address;
     }
 
@@ -31,8 +31,8 @@ public class Location extends BaseModel {
         return city;
     }
 
-    public String getState() {
-        return state;
+    public String getRegion() {
+        return region;
     }
 
     public Address getAddress() {

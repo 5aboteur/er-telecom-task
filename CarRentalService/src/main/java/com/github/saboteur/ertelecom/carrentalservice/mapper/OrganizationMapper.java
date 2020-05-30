@@ -37,20 +37,27 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDto>
 
     @Override
     public Organization convertToEntity(OrganizationDto dto) {
+        if (dto == null || dto.getType() == null || dto.getName() == null || dto.getInn() == null)
+            throw new IllegalArgumentException("An organization requires 'type', 'name' and 'inn' information");
+
         return new Organization(
             dto.getType(),
             dto.getName(),
             dto.getInn(),
-            dto
-                .getBranches()
-                .stream()
-                .map(branchMapper::convertToEntity)
-                .collect(Collectors.toList()),
-            dto
-                .getCars()
-                .stream()
-                .map(carMapper::convertToEntity)
-                .collect(Collectors.toList())
+            dto.getBranches() == null
+                ? null
+                : dto
+                    .getBranches()
+                    .stream()
+                    .map(branchMapper::convertToEntity)
+                    .collect(Collectors.toList()),
+            dto.getCars() == null
+                ? null
+                : dto
+                    .getCars()
+                    .stream()
+                    .map(carMapper::convertToEntity)
+                    .collect(Collectors.toList())
         );
     }
 

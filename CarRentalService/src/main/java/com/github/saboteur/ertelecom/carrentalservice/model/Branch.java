@@ -15,6 +15,9 @@ public class Branch extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY)
     private Organization organization;
 
+    @Column(name = "code", nullable = false)
+    private String code;
+
     @Column(name = "phone")
     private String phone;
 
@@ -23,9 +26,14 @@ public class Branch extends BaseModel {
 
     public Branch() { }
 
-    public Branch(String phone, Location location) {
+    public Branch(String code, String phone, Location location) {
+        this.code = code;
         this.phone = phone;
         this.location = location;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public String getPhone() {

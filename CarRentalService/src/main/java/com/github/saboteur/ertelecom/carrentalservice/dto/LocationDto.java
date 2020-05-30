@@ -2,14 +2,14 @@ package com.github.saboteur.ertelecom.carrentalservice.dto;
 
 public class LocationDto {
     private String city;
-    private String state;
+    private String region;
     private AddressDto address;
 
     public LocationDto() { }
 
-    public LocationDto(String city, String state, AddressDto address) {
+    public LocationDto(String city, String region, AddressDto address) {
         this.city = city;
-        this.state = state;
+        this.region = region;
         this.address = address;
     }
 
@@ -17,8 +17,8 @@ public class LocationDto {
         return city;
     }
 
-    public String getState() {
-        return state;
+    public String getRegion() {
+        return region;
     }
 
     public AddressDto getAddress() {

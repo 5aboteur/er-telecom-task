@@ -15,17 +15,24 @@ public class LocationMapper implements Mapper<Location, LocationDto> {
     public LocationDto convertToDto(Location entity) {
         return new LocationDto(
             entity.getCity(),
-            entity.getState(),
-            addressMapper.convertToDto(entity.getAddress())
+            entity.getRegion(),
+            entity.getAddress() == null
+                ? null
+                : addressMapper.convertToDto(entity.getAddress())
         );
     }
 
     @Override
     public Location convertToEntity(LocationDto dto) {
+        if (dto == null || dto.getCity() == null)
+            throw new IllegalArgumentException("A location requires 'city' information");
+
         return new Location(
             dto.getCity(),
-            dto.getState(),
-            addressMapper.convertToEntity(dto.getAddress())
+            dto.getRegion(),
+            dto.getAddress() == null
+                ? null
+                : addressMapper.convertToEntity(dto.getAddress())
         );
     }
 

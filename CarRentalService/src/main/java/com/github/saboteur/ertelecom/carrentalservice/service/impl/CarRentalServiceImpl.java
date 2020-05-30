@@ -19,9 +19,13 @@ public class CarRentalServiceImpl implements CarRentalService {
 
     @Override
     public Long createOrganization(OrganizationDto organizationDto) {
-        return organizationRepository
-            .save(organizationMapper.convertToEntity(organizationDto))
-            .getId();
+        try {
+            return organizationRepository
+                .save(organizationMapper.convertToEntity(organizationDto))
+                .getId();
+        } catch (IllegalArgumentException e) {
+            return -1L;
+        }
     }
 
     @Transactional

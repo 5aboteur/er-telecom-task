@@ -14,16 +14,25 @@ public class BranchMapper implements Mapper<Branch, BranchDto> {
     @Override
     public BranchDto convertToDto(Branch entity) {
         return new BranchDto(
+            entity.getCode(),
             entity.getPhone(),
-            locationMapper.convertToDto(entity.getLocation())
+            entity.getLocation() == null
+                ? null
+                : locationMapper.convertToDto(entity.getLocation())
         );
     }
 
     @Override
     public Branch convertToEntity(BranchDto dto) {
+        if (dto == null || dto.getCode() == null)
+            throw new IllegalArgumentException("A branch requires 'code' information");
+
         return new Branch(
+            dto.getCode(),
             dto.getPhone(),
-            locationMapper.convertToEntity(dto.getLocation())
+            dto.getLocation() == null
+                ? null
+                : locationMapper.convertToEntity(dto.getLocation())
         );
     }
 

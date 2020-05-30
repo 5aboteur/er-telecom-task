@@ -8,6 +8,9 @@ public class NameMapper implements Mapper<Name, String> {
 
     @Override
     public String convertToDto(Name entity) {
+        if (entity == null)
+            return null;
+
         StringBuilder sb = new StringBuilder();
 
         if (entity.getLast().length() > 0)
@@ -26,10 +29,13 @@ public class NameMapper implements Mapper<Name, String> {
 
     @Override
     public Name convertToEntity(String s) throws IllegalArgumentException {
+        if (s == null)
+            throw new IllegalArgumentException("Name shouldn't be null");
+
         String[] words = s.split(" ");
 
         if (words.length != 3)
-            throw new IllegalArgumentException("You should provide a full name");
+            throw new IllegalArgumentException("Incorrect name provided");
 
         return new Name(
             words[1],

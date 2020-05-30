@@ -8,13 +8,13 @@ import javax.persistence.Table;
 @Table(name = "names")
 public class Name extends BaseModel {
 
-    @Column(name = "first")
+    @Column(name = "first", nullable = false)
     private String first;
 
-    @Column(name = "middle")
+    @Column(name = "middle", nullable = false)
     private String middle;
 
-    @Column(name = "last")
+    @Column(name = "last", nullable = false)
     private String last;
 
     public Name() { }
