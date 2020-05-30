@@ -18,14 +18,14 @@ public class CarRentalControllerImpl implements CarRentalControllerApi {
 
     @Override
     public ResponseEntity<Long> createOrganization(OrganizationDto organizationDto) {
-        Long createdId = carRentalService.createOrganization(organizationDto);
+        Long result = carRentalService.createOrganization(organizationDto);
         return ResponseEntity
             .status(
-                createdId == -1 || createdId == 0
+                result == -1 || result == 0
                     ? HttpStatus.BAD_REQUEST
                     : HttpStatus.CREATED
             )
-            .body(createdId);
+            .body(result);
     }
 
     @Override
@@ -41,13 +41,15 @@ public class CarRentalControllerImpl implements CarRentalControllerApi {
     }
 
     @Override
-    public ResponseEntity<Boolean> updateOrganization(Long organizationId, OrganizationDto organization) {
-        return null;
+    public ResponseEntity<Boolean> updateOrganization(Long organizationId, OrganizationDto organizationDto) {
+        Boolean result = carRentalService.updateOrganization(organizationId, organizationDto);
+        return ResponseEntity.ok(result);
     }
 
     @Override
     public ResponseEntity<Boolean> deleteOrganization(Long organizationId) {
-        return null;
+        Boolean result = carRentalService.deleteOrganization(organizationId);
+        return ResponseEntity.ok(result);
     }
 
 }

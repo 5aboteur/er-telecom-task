@@ -4,9 +4,9 @@ import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 
 public interface CarRentalService {
 
-    Long createOrganization(OrganizationDto organization);
+    Long createOrganization(OrganizationDto organizationDto);
     OrganizationDto getOrganization(Long organizationId);
-    Boolean updateOrganization(String organizationId, OrganizationDto organization);
-    Boolean deleteOrganization(String organizationId);
+    Boolean updateOrganization(Long organizationId, OrganizationDto organizationDto);
+    Boolean deleteOrganization(Long organizationId);
 
 }
