@@ -1,6 +1,7 @@
-package com.github.saboteur.ertelecom.carrentalservice.mapper;
+package com.github.saboteur.ertelecom.carrentalservice.mapper.domain;
 
 import com.github.saboteur.ertelecom.carrentalservice.dto.CarDto;
+import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

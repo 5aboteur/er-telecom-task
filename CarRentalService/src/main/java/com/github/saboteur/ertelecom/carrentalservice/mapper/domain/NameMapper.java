@@ -1,5 +1,6 @@
-package com.github.saboteur.ertelecom.carrentalservice.mapper;
+package com.github.saboteur.ertelecom.carrentalservice.mapper.domain;
 
+import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Name;
 import org.springframework.stereotype.Component;
 
