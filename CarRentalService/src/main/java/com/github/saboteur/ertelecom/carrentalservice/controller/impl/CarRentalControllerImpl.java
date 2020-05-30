@@ -9,12 +9,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Api
 @RestController
 public class CarRentalControllerImpl implements CarRentalControllerApi {
 
     @Autowired
     private CarRentalService carRentalService;
+
+    @Override
+    public ResponseEntity<List<OrganizationDto>> getOrganizations(int pageIndex, int pageSize) {
+        List<OrganizationDto> result = carRentalService.getOrganizations(pageIndex, pageSize);
+        return ResponseEntity
+            .status(
+                result.size() == 0
+                    ? HttpStatus.NOT_FOUND
+                    : HttpStatus.OK
+            )
+            .body(result);
+    }
 
     @Override
     public ResponseEntity<Long> createOrganization(OrganizationDto organizationDto) {

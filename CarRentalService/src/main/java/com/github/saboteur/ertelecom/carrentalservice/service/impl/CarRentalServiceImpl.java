@@ -7,9 +7,11 @@ import com.github.saboteur.ertelecom.carrentalservice.repository.OrganizationRep
 import com.github.saboteur.ertelecom.carrentalservice.service.CarRentalService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +25,16 @@ public class CarRentalServiceImpl implements CarRentalService {
     @Autowired
     private OrganizationRepository organizationRepository;
 
+    @Transactional
+    @Override
+    public List<OrganizationDto> getOrganizations(int pageIndex, int pageSize) {
+        return organizationRepository
+            .findAll(PageRequest.of(pageIndex, pageSize))
+            .map(organizationMapper::convertToDto)
+            .toList();
+    }
+
+    @Transactional
     @Override
     public Long createOrganization(OrganizationDto organizationDto) {
         try {

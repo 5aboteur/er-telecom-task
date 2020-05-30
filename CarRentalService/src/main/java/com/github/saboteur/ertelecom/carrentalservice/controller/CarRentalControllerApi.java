@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Api(value = "Car Rental service controller")
 @RestController
 @RequestMapping("api")
@@ -31,8 +33,20 @@ public interface CarRentalControllerApi {
 
     // Organization APIs
 
+    @ApiOperation(value = "Get all organizations")
+    @GetMapping("/organizations/get")
+    ResponseEntity<List<OrganizationDto>> getOrganizations(
+        @ApiParam(value = "Page index", defaultValue = "0", example = "0")
+        @RequestParam(value = "pageIndex")
+        int pageIndex,
+
+        @ApiParam(value = "Page size", defaultValue = "10", example = "10")
+        @RequestParam(value = "pageSize")
+        int pageSize
+    );
+
     @ApiOperation(value = "Add organization info")
-    @PostMapping("/carrental/organization/create")
+    @PostMapping("/organization/create")
     ResponseEntity<Long> createOrganization(
         @ApiParam("Full organization info")
         @RequestBody
@@ -40,7 +54,7 @@ public interface CarRentalControllerApi {
     );
 
     @ApiOperation(value = "Get organization info by ID")
-    @GetMapping("/carrental/organization/get")
+    @GetMapping("/organization/get")
     ResponseEntity<OrganizationDto> getOrganization(
         @ApiParam(value = "Organization ID", required = true, example = "666")
         @RequestParam(value = "organizationId")
@@ -48,7 +62,7 @@ public interface CarRentalControllerApi {
     );
 
     @ApiOperation(value = "Update organization info")
-    @PutMapping("/carrental/organization/update")
+    @PutMapping("/organization/update")
     ResponseEntity<Boolean> updateOrganization(
         @ApiParam(value = "Organization ID", required = true, example = "666")
         @RequestParam(value = "organizationId")
@@ -60,7 +74,7 @@ public interface CarRentalControllerApi {
     );
 
     @ApiOperation(value = "Delete organization info")
-    @DeleteMapping("/carrental/organization/delete")
+    @DeleteMapping("/organization/delete")
     ResponseEntity<Boolean> deleteOrganization(
         @ApiParam(value = "Organization ID", required = true, example = "666")
         @RequestParam(value = "organizationId")
