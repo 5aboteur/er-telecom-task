@@ -6,6 +6,7 @@ import com.github.saboteur.ertelecom.carrentalservice.repository.OrganizationRep
 import com.github.saboteur.ertelecom.carrentalservice.service.CarRentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CarRentalServiceImpl implements CarRentalService {
@@ -23,6 +24,7 @@ public class CarRentalServiceImpl implements CarRentalService {
             .getId();
     }
 
+    @Transactional
     @Override
     public OrganizationDto getOrganization(Long organizationId) {
         return organizationRepository
