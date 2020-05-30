@@ -22,7 +22,7 @@ public class Car extends BaseModel {
     @Column(name = "number")
     private String number;
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<RentInfo> rentHistory;
 
     public Car() { }

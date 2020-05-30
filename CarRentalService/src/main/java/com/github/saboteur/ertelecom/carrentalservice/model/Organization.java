@@ -20,10 +20,10 @@ public class Organization extends BaseModel {
     @Column(name = "inn")
     private String inn;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Branch> branches;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Car> cars;
 
     public Organization() { }
