@@ -21,6 +21,13 @@ public class Branch extends BaseModel {
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
+    public Branch() { }
+
+    public Branch(String phone, Location location) {
+        this.phone = phone;
+        this.location = location;
+    }
+
     public String getPhone() {
         return phone;
     }

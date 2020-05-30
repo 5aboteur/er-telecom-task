@@ -25,6 +25,14 @@ public class Car extends BaseModel {
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RentInfo> rentHistory;
 
+    public Car() { }
+
+    public Car(String brand, String number, List<RentInfo> rentHistory) {
+        this.brand = brand;
+        this.number = number;
+        this.rentHistory = rentHistory;
+    }
+
     public String getBrand() {
         return brand;
     }

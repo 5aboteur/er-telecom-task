@@ -14,4 +14,8 @@ public class BaseModel {
     @Column(name = "id")
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
 }

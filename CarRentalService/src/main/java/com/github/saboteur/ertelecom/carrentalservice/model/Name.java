@@ -17,6 +17,14 @@ public class Name extends BaseModel {
     @Column(name = "last")
     private String last;
 
+    public Name() { }
+
+    public Name(String first, String middle, String last) {
+        this.first = first;
+        this.middle = middle;
+        this.last = last;
+    }
+
     public String getFirst() {
         return first;
     }

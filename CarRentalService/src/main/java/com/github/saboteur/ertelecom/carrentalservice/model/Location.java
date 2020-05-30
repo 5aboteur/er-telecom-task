@@ -19,6 +19,14 @@ public class Location extends BaseModel {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
+    public Location() { }
+
+    public Location(String city, String state, Address address) {
+        this.city = city;
+        this.state = state;
+        this.address = address;
+    }
+
     public String getCity() {
         return city;
     }

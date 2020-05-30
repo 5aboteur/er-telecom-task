@@ -26,6 +26,16 @@ public class Organization extends BaseModel {
     @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> cars;
 
+    public Organization() { }
+
+    public Organization(String type, String name, String inn, List<Branch> branches, List<Car> cars) {
+        this.type = type;
+        this.name = name;
+        this.inn = inn;
+        this.branches = branches;
+        this.cars = cars;
+    }
+
     public String getType() {
         return type;
     }

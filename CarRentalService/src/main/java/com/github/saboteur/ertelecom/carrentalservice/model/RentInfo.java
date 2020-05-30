@@ -28,6 +28,15 @@ public class RentInfo extends BaseModel {
     @OneToOne(cascade = CascadeType.ALL)
     private Name tenantFullName;
 
+    public RentInfo() { }
+
+    public RentInfo(String branchCode, LocalDateTime dateStart, LocalDateTime dateEnd, Name tenantFullName) {
+        this.branchCode = branchCode;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.tenantFullName = tenantFullName;
+    }
+
     public String getBranchCode() {
         return branchCode;
     }

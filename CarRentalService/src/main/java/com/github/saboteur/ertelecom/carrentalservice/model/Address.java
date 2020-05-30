@@ -17,6 +17,14 @@ public class Address extends BaseModel {
     @Column(name = "postal_code")
     private String postalCode;
 
+    public Address() { }
+
+    public Address(String street, String number, String postalCode) {
+        this.street = street;
+        this.number = number;
+        this.postalCode = postalCode;
+    }
+
     public String getStreet() {
         return street;
     }
