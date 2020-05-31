@@ -1,0 +1,5 @@
+-- Init database for Car Rental Service
+
+CREATE DATABASE crs;
+CREATE USER crs WITH ENCRYPTED PASSWORD 'crs';
+GRANT ALL PRIVILEGES ON DATABASE crs TO crs;
