@@ -3,6 +3,7 @@ package com.github.saboteur.ertelecom.carrentalservice.controller;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measures.CarAverageRentalTimeInfoDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -23,7 +24,7 @@ import java.util.List;
 @RequestMapping("api")
 public interface CarRentalControllerApi {
 
-    // Organization APIs
+    // Organizations APIs
 
     @ApiOperation(value = "Get all organizations")
     @GetMapping("/organizations/get")
@@ -36,6 +37,8 @@ public interface CarRentalControllerApi {
         @RequestParam(value = "pageSize")
         int pageSize
     );
+
+    // Organization APIs
 
     @ApiOperation(value = "Add organization info")
     @PostMapping("/organization/create")
@@ -71,6 +74,20 @@ public interface CarRentalControllerApi {
         @ApiParam(value = "Organization ID", required = true, example = "666")
         @RequestParam(value = "organizationId")
         Long organizationId
+    );
+
+    // Cars APIs
+
+    @ApiOperation(value = "Get all car's average rental time info for every branch")
+    @GetMapping("/cars/rental/info/get")
+    ResponseEntity<List<CarAverageRentalTimeInfoDto>> getCarsAverageRentalTimeInfo(
+        @ApiParam(value = "Page index", defaultValue = "0", example = "0")
+        @RequestParam(value = "pageIndex")
+        int pageIndex,
+
+        @ApiParam(value = "Page size", defaultValue = "10", example = "10")
+        @RequestParam(value = "pageSize")
+        int pageSize
     );
 
     // Car APIs

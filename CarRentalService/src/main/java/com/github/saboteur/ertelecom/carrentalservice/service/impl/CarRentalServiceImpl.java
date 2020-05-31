@@ -3,12 +3,15 @@ package com.github.saboteur.ertelecom.carrentalservice.service.impl;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measures.CarAverageRentalTimeInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.mapper.measures.CarAverageRentalTimeInfoMapper;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.domain.OrganizationMapper;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.domain.RentalInfoMapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Branch;
 import com.github.saboteur.ertelecom.carrentalservice.model.Car;
 import com.github.saboteur.ertelecom.carrentalservice.model.Organization;
 import com.github.saboteur.ertelecom.carrentalservice.model.RentalInfo;
+import com.github.saboteur.ertelecom.carrentalservice.model.measures.CarAverageRentalTimeInfo;
 import com.github.saboteur.ertelecom.carrentalservice.repository.BranchRepository;
 import com.github.saboteur.ertelecom.carrentalservice.repository.CarRepository;
 import com.github.saboteur.ertelecom.carrentalservice.repository.OrganizationRepository;
@@ -19,7 +22,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,6 +40,9 @@ public class CarRentalServiceImpl implements CarRentalService {
 
     @Autowired
     private RentalInfoMapper rentalInfoMapper;
+
+    @Autowired
+    private CarAverageRentalTimeInfoMapper carAverageRentalTimeInfoMapper;
 
     @Autowired
     private OrganizationRepository organizationRepository;
@@ -136,6 +146,33 @@ public class CarRentalServiceImpl implements CarRentalService {
         organizationRepository.deleteById(organizationId);
 
         return true;
+    }
+
+    @Transactional
+    @Override
+    public List<CarAverageRentalTimeInfoDto> getCarsAverageRentalTimeInfo(int pageIndex, int pageSize) {
+        List<Car> cars = carRepository.findAll();
+        List<CarAverageRentalTimeInfoDto> result = new ArrayList<>();
+
+        for (Car car : cars) {
+            Map<String, Long> records = new HashMap<>();
+
+            for (RentalInfo ri : car.getRentalHistory()) {
+                Duration diff = Duration.between(ri.getDateStart(), ri.getDateEnd());
+                Long currentTime = records.getOrDefault(ri.getBranchCode(), 0L);
+                records.put(ri.getBranchCode(), currentTime + diff.toMinutes());
+            }
+
+            CarAverageRentalTimeInfo info = new CarAverageRentalTimeInfo(
+                car.getBrand(),
+                car.getNumber(),
+                records
+            );
+
+            result.add(carAverageRentalTimeInfoMapper.convertToDto(info));
+        }
+
+        return result;
     }
 
     @Transactional
