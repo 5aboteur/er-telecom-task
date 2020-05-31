@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "organizations")
@@ -54,6 +55,21 @@ public class Organization extends BaseModel {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Organization that = (Organization) o;
+        return type.equals(that.type) &&
+            name.equals(that.name) &&
+            inn.equals(that.inn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, name, inn);
     }
 
 }

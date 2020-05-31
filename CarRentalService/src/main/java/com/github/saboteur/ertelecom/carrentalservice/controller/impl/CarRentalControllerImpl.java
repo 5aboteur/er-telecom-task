@@ -4,10 +4,9 @@ import com.github.saboteur.ertelecom.carrentalservice.controller.CarRentalContro
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
-import com.github.saboteur.ertelecom.carrentalservice.dto.measures.CarAverageRentalTimeInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measure.CarAverageRentalTimeInfoDto;
 import com.github.saboteur.ertelecom.carrentalservice.service.CarRentalService;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +17,11 @@ import java.util.List;
 @RestController
 public class CarRentalControllerImpl implements CarRentalControllerApi {
 
-    @Autowired
-    private CarRentalService carRentalService;
+    private final CarRentalService carRentalService;
+
+    public CarRentalControllerImpl(CarRentalService carRentalService) {
+        this.carRentalService = carRentalService;
+    }
 
     @Override
     public ResponseEntity<List<OrganizationShortDto>> getOrganizations(int pageIndex, int pageSize) {

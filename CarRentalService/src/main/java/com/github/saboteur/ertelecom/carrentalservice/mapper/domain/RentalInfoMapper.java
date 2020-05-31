@@ -4,17 +4,18 @@ import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.common.LocalDateTimeMapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.RentalInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RentalInfoMapper implements Mapper<RentalInfo, RentalInfoDto> {
 
-    @Autowired
-    private LocalDateTimeMapper localDateTimeMapper;
+    private final LocalDateTimeMapper localDateTimeMapper;
+    private final NameMapper nameMapper;
 
-    @Autowired
-    private NameMapper nameMapper;
+    public RentalInfoMapper(LocalDateTimeMapper localDateTimeMapper, NameMapper nameMapper) {
+        this.localDateTimeMapper = localDateTimeMapper;
+        this.nameMapper = nameMapper;
+    }
 
     @Override
     public RentalInfoDto convertToDto(RentalInfo entity) {

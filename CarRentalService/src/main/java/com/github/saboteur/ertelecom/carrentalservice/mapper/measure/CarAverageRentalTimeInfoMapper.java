@@ -1,9 +1,8 @@
-package com.github.saboteur.ertelecom.carrentalservice.mapper.measures;
+package com.github.saboteur.ertelecom.carrentalservice.mapper.measure;
 
-import com.github.saboteur.ertelecom.carrentalservice.dto.measures.CarAverageRentalTimeInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measure.CarAverageRentalTimeInfoDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
-import com.github.saboteur.ertelecom.carrentalservice.model.measures.CarAverageRentalTimeInfo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.saboteur.ertelecom.carrentalservice.model.measure.CarAverageRentalTimeInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -11,8 +10,11 @@ import java.util.stream.Collectors;
 @Component
 public class CarAverageRentalTimeInfoMapper implements Mapper<CarAverageRentalTimeInfo, CarAverageRentalTimeInfoDto> {
 
-    @Autowired
-    private BranchRecordMapper branchRecordMapper;
+    private final BranchRecordMapper branchRecordMapper;
+
+    public CarAverageRentalTimeInfoMapper(BranchRecordMapper branchRecordMapper) {
+        this.branchRecordMapper = branchRecordMapper;
+    }
 
     @Override
     public CarAverageRentalTimeInfoDto convertToDto(CarAverageRentalTimeInfo entity) {

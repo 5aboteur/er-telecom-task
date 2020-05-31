@@ -1,4 +1,4 @@
-package com.github.saboteur.ertelecom.carrentalservice.dto.measures;
+package com.github.saboteur.ertelecom.carrentalservice.dto.measure;
 
 import java.util.List;
 

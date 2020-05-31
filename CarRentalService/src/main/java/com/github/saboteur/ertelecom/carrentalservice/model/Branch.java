@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "branches")
@@ -42,6 +43,20 @@ public class Branch extends BaseModel {
 
     public Location getLocation() {
         return location;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Branch branch = (Branch) o;
+        return code.equals(branch.code) &&
+            Objects.equals(phone, branch.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, phone);
     }
 
 }

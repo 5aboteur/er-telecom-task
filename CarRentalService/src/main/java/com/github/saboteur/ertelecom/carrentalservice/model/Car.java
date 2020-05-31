@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -47,6 +48,20 @@ public class Car extends BaseModel {
 
     public void setRentalHistory(Set<RentalInfo> rentalHistory) {
         this.rentalHistory = rentalHistory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return brand.equals(car.brand) &&
+            number.equals(car.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, number);
     }
 
 }

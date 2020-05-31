@@ -4,7 +4,6 @@ import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Organization;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -12,11 +11,13 @@ import java.util.stream.Collectors;
 @Component
 public class OrganizationMapper implements Mapper<Organization, OrganizationDto> {
 
-    @Autowired
-    private BranchMapper branchMapper;
+    private final BranchMapper branchMapper;
+    private final CarMapper carMapper;
 
-    @Autowired
-    private CarMapper carMapper;
+    public OrganizationMapper(BranchMapper branchMapper, CarMapper carMapper) {
+        this.branchMapper = branchMapper;
+        this.carMapper = carMapper;
+    }
 
     @Override
     public OrganizationDto convertToDto(Organization entity) {

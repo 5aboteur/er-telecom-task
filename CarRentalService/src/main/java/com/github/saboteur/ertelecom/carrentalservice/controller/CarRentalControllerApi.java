@@ -3,7 +3,7 @@ package com.github.saboteur.ertelecom.carrentalservice.controller;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
-import com.github.saboteur.ertelecom.carrentalservice.dto.measures.CarAverageRentalTimeInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measure.CarAverageRentalTimeInfoDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -78,6 +78,7 @@ public interface CarRentalControllerApi {
 
     // Cars APIs
 
+    // TODO: play with async here
     @ApiOperation(value = "Get all car's average rental time info for every branch")
     @GetMapping("/cars/rental/info/get")
     ResponseEntity<List<CarAverageRentalTimeInfoDto>> getCarsAverageRentalTimeInfo(

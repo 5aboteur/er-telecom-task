@@ -3,21 +3,20 @@ package com.github.saboteur.ertelecom.carrentalservice.service.impl;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
-import com.github.saboteur.ertelecom.carrentalservice.dto.measures.CarAverageRentalTimeInfoDto;
-import com.github.saboteur.ertelecom.carrentalservice.mapper.measures.CarAverageRentalTimeInfoMapper;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measure.CarAverageRentalTimeInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.mapper.measure.CarAverageRentalTimeInfoMapper;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.domain.OrganizationMapper;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.domain.RentalInfoMapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Branch;
 import com.github.saboteur.ertelecom.carrentalservice.model.Car;
 import com.github.saboteur.ertelecom.carrentalservice.model.Organization;
 import com.github.saboteur.ertelecom.carrentalservice.model.RentalInfo;
-import com.github.saboteur.ertelecom.carrentalservice.model.measures.CarAverageRentalTimeInfo;
+import com.github.saboteur.ertelecom.carrentalservice.model.measure.CarAverageRentalTimeInfo;
 import com.github.saboteur.ertelecom.carrentalservice.repository.BranchRepository;
 import com.github.saboteur.ertelecom.carrentalservice.repository.CarRepository;
 import com.github.saboteur.ertelecom.carrentalservice.repository.OrganizationRepository;
 import com.github.saboteur.ertelecom.carrentalservice.service.CarRentalService;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,23 +34,29 @@ public class CarRentalServiceImpl implements CarRentalService {
 
     final static Logger logger = Logger.getLogger(CarRentalServiceImpl.class);
 
-    @Autowired
-    private OrganizationMapper organizationMapper;
+    private final OrganizationMapper organizationMapper;
+    private final RentalInfoMapper rentalInfoMapper;
+    private final CarAverageRentalTimeInfoMapper carAverageRentalTimeInfoMapper;
 
-    @Autowired
-    private RentalInfoMapper rentalInfoMapper;
+    private final OrganizationRepository organizationRepository;
+    private final CarRepository carRepository;
+    private final BranchRepository branchRepository;
 
-    @Autowired
-    private CarAverageRentalTimeInfoMapper carAverageRentalTimeInfoMapper;
-
-    @Autowired
-    private OrganizationRepository organizationRepository;
-
-    @Autowired
-    private CarRepository carRepository;
-
-    @Autowired
-    private BranchRepository branchRepository;
+    public CarRentalServiceImpl(
+        OrganizationMapper organizationMapper,
+        RentalInfoMapper rentalInfoMapper,
+        CarAverageRentalTimeInfoMapper carAverageRentalTimeInfoMapper,
+        OrganizationRepository organizationRepository,
+        CarRepository carRepository,
+        BranchRepository branchRepository
+    ) {
+        this.organizationMapper = organizationMapper;
+        this.rentalInfoMapper = rentalInfoMapper;
+        this.carAverageRentalTimeInfoMapper = carAverageRentalTimeInfoMapper;
+        this.organizationRepository = organizationRepository;
+        this.carRepository = carRepository;
+        this.branchRepository = branchRepository;
+    }
 
     @Transactional
     @Override

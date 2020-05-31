@@ -1,6 +1,6 @@
-package com.github.saboteur.ertelecom.carrentalservice.mapper.measures;
+package com.github.saboteur.ertelecom.carrentalservice.mapper.measure;
 
-import com.github.saboteur.ertelecom.carrentalservice.dto.measures.BranchRecordDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measure.BranchRecordDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import org.springframework.stereotype.Component;
 

@@ -3,7 +3,7 @@ package com.github.saboteur.ertelecom.carrentalservice.service;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
-import com.github.saboteur.ertelecom.carrentalservice.dto.measures.CarAverageRentalTimeInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.measure.CarAverageRentalTimeInfoDto;
 
 import java.util.List;
 

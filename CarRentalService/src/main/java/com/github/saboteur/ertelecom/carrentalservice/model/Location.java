@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "locations")
@@ -37,6 +38,20 @@ public class Location extends BaseModel {
 
     public Address getAddress() {
         return address;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return city.equals(location.city) &&
+            Objects.equals(region, location.region);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, region);
     }
 
 }

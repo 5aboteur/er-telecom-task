@@ -3,14 +3,16 @@ package com.github.saboteur.ertelecom.carrentalservice.mapper.domain;
 import com.github.saboteur.ertelecom.carrentalservice.dto.LocationDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Location;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LocationMapper implements Mapper<Location, LocationDto> {
 
-    @Autowired
-    private AddressMapper addressMapper;
+    private final AddressMapper addressMapper;
+
+    public LocationMapper(AddressMapper addressMapper) {
+        this.addressMapper = addressMapper;
+    }
 
     @Override
     public LocationDto convertToDto(Location entity) {

@@ -3,7 +3,6 @@ package com.github.saboteur.ertelecom.carrentalservice.mapper.domain;
 import com.github.saboteur.ertelecom.carrentalservice.dto.CarDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Car;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
@@ -11,8 +10,11 @@ import java.util.stream.Collectors;
 @Component
 public class CarMapper implements Mapper<Car, CarDto> {
 
-    @Autowired
-    private RentalInfoMapper rentalInfoMapper;
+    private final RentalInfoMapper rentalInfoMapper;
+
+    public CarMapper(RentalInfoMapper rentalInfoMapper) {
+        this.rentalInfoMapper = rentalInfoMapper;
+    }
 
     @Override
     public CarDto convertToDto(Car entity) {

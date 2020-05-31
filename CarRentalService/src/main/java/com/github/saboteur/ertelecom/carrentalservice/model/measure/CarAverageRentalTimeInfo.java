@@ -1,4 +1,4 @@
-package com.github.saboteur.ertelecom.carrentalservice.model.measures;
+package com.github.saboteur.ertelecom.carrentalservice.model.measure;
 
 import java.util.Map;
 
