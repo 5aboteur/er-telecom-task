@@ -5,14 +5,14 @@ import java.util.List;
 public class CarDto {
     private String brand;
     private String number;
-    private List<RentInfoDto> rentHistory;
+    private List<RentalInfoDto> rentalHistory;
 
     public CarDto() { }
 
-    public CarDto(String brand, String number, List<RentInfoDto> rentHistory) {
+    public CarDto(String brand, String number, List<RentalInfoDto> rentalHistory) {
         this.brand = brand;
         this.number = number;
-        this.rentHistory = rentHistory;
+        this.rentalHistory = rentalHistory;
     }
 
     public String getBrand() {
@@ -23,7 +23,7 @@ public class CarDto {
         return number;
     }
 
-    public List<RentInfoDto> getRentHistory() {
-        return rentHistory;
+    public List<RentalInfoDto> getRentalHistory() {
+        return rentalHistory;
     }
 }

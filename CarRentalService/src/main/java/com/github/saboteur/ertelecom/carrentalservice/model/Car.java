@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cars")
@@ -23,14 +23,14 @@ public class Car extends BaseModel {
     private String number;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<RentInfo> rentHistory;
+    private Set<RentalInfo> rentalHistory;
 
     public Car() { }
 
-    public Car(String brand, String number, List<RentInfo> rentHistory) {
+    public Car(String brand, String number, Set<RentalInfo> rentalHistory) {
         this.brand = brand;
         this.number = number;
-        this.rentHistory = rentHistory;
+        this.rentalHistory = rentalHistory;
     }
 
     public String getBrand() {
@@ -41,8 +41,12 @@ public class Car extends BaseModel {
         return number;
     }
 
-    public List<RentInfo> getRentHistory() {
-        return rentHistory;
+    public Set<RentalInfo> getRentalHistory() {
+        return rentalHistory;
+    }
+
+    public void setRentalHistory(Set<RentalInfo> rentalHistory) {
+        this.rentalHistory = rentalHistory;
     }
 
 }

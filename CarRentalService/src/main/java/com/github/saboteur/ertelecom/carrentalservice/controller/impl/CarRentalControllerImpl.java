@@ -2,6 +2,8 @@ package com.github.saboteur.ertelecom.carrentalservice.controller.impl;
 
 import com.github.saboteur.ertelecom.carrentalservice.controller.CarRentalControllerApi;
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
 import com.github.saboteur.ertelecom.carrentalservice.service.CarRentalService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,11 @@ public class CarRentalControllerImpl implements CarRentalControllerApi {
     private CarRentalService carRentalService;
 
     @Override
-    public ResponseEntity<List<OrganizationDto>> getOrganizations(int pageIndex, int pageSize) {
-        List<OrganizationDto> result = carRentalService.getOrganizations(pageIndex, pageSize);
+    public ResponseEntity<List<OrganizationShortDto>> getOrganizations(int pageIndex, int pageSize) {
+        List<OrganizationShortDto> result = carRentalService.getOrganizations(pageIndex, pageSize);
         return ResponseEntity
             .status(
-                result.size() == 0
+                result == null || result.size() == 0
                     ? HttpStatus.NOT_FOUND
                     : HttpStatus.OK
             )
@@ -63,6 +65,12 @@ public class CarRentalControllerImpl implements CarRentalControllerApi {
     @Override
     public ResponseEntity<Boolean> deleteOrganization(Long organizationId) {
         Boolean result = carRentalService.deleteOrganization(organizationId);
+        return ResponseEntity.ok(result);
+    }
+
+    @Override
+    public ResponseEntity<Boolean> updateCarRentalHistory(String carNumber, RentalInfoDto rentalInfoDto) {
+        Boolean result = carRentalService.updateCarRentalHistory(carNumber, rentalInfoDto);
         return ResponseEntity.ok(result);
     }
 

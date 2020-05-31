@@ -12,19 +12,19 @@ import java.util.stream.Collectors;
 public class CarMapper implements Mapper<Car, CarDto> {
 
     @Autowired
-    private RentInfoMapper rentInfoMapper;
+    private RentalInfoMapper rentalInfoMapper;
 
     @Override
     public CarDto convertToDto(Car entity) {
         return new CarDto(
             entity.getBrand(),
             entity.getNumber(),
-            entity.getRentHistory() == null
+            entity.getRentalHistory() == null
                 ? null
                 : entity
-                    .getRentHistory()
+                    .getRentalHistory()
                     .stream()
-                    .map(rentInfoMapper::convertToDto)
+                    .map(rentalInfoMapper::convertToDto)
                     .collect(Collectors.toList())
         );
     }
@@ -37,13 +37,13 @@ public class CarMapper implements Mapper<Car, CarDto> {
         return new Car(
             dto.getBrand(),
             dto.getNumber(),
-            dto.getRentHistory() == null
+            dto.getRentalHistory() == null
                 ? null
                 : dto
-                    .getRentHistory()
+                    .getRentalHistory()
                     .stream()
-                    .map(rentInfoMapper::convertToEntity)
-                    .collect(Collectors.toList())
+                    .map(rentalInfoMapper::convertToEntity)
+                    .collect(Collectors.toSet())
         );
     }
 

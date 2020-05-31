@@ -1,14 +1,14 @@
 package com.github.saboteur.ertelecom.carrentalservice.mapper.domain;
 
-import com.github.saboteur.ertelecom.carrentalservice.dto.RentInfoDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.common.LocalDateTimeMapper;
-import com.github.saboteur.ertelecom.carrentalservice.model.RentInfo;
+import com.github.saboteur.ertelecom.carrentalservice.model.RentalInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RentInfoMapper implements Mapper<RentInfo, RentInfoDto> {
+public class RentalInfoMapper implements Mapper<RentalInfo, RentalInfoDto> {
 
     @Autowired
     private LocalDateTimeMapper localDateTimeMapper;
@@ -17,8 +17,8 @@ public class RentInfoMapper implements Mapper<RentInfo, RentInfoDto> {
     private NameMapper nameMapper;
 
     @Override
-    public RentInfoDto convertToDto(RentInfo entity) {
-        return new RentInfoDto(
+    public RentalInfoDto convertToDto(RentalInfo entity) {
+        return new RentalInfoDto(
             entity.getBranchCode(),
             localDateTimeMapper.convertToString(entity.getDateStart()),
             localDateTimeMapper.convertToString(entity.getDateEnd()),
@@ -27,11 +27,11 @@ public class RentInfoMapper implements Mapper<RentInfo, RentInfoDto> {
     }
 
     @Override
-    public RentInfo convertToEntity(RentInfoDto dto) {
+    public RentalInfo convertToEntity(RentalInfoDto dto) {
         if (allDtoParametersAreNull(dto))
-            throw new IllegalArgumentException("A rent info requires full information");
+            throw new IllegalArgumentException("A rental info requires full information");
 
-        return new RentInfo(
+        return new RentalInfo(
             dto.getBranchCode(),
             localDateTimeMapper.convertToLocalDateTime(dto.getDateStart()),
             localDateTimeMapper.convertToLocalDateTime(dto.getDateEnd()),
@@ -39,7 +39,7 @@ public class RentInfoMapper implements Mapper<RentInfo, RentInfoDto> {
         );
     }
 
-    private boolean allDtoParametersAreNull(RentInfoDto dto) {
+    private boolean allDtoParametersAreNull(RentalInfoDto dto) {
         return dto == null
             || dto.getBranchCode() == null
             || dto.getDateStart() == null

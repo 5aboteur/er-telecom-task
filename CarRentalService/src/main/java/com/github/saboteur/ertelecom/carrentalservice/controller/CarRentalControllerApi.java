@@ -1,6 +1,8 @@
 package com.github.saboteur.ertelecom.carrentalservice.controller;
 
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.RentalInfoDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -21,21 +23,11 @@ import java.util.List;
 @RequestMapping("api")
 public interface CarRentalControllerApi {
 
-    // Rent APIs
-
-//    @ApiOperation(value = "")
-//    @PostMapping("")
-//    ResponseEntity<String> createRentRecord(
-//        @ApiParam("Full rental info")
-//        @RequestBody
-//        RentRecordDto rentRecordDto
-//    );
-
     // Organization APIs
 
     @ApiOperation(value = "Get all organizations")
     @GetMapping("/organizations/get")
-    ResponseEntity<List<OrganizationDto>> getOrganizations(
+    ResponseEntity<List<OrganizationShortDto>> getOrganizations(
         @ApiParam(value = "Page index", defaultValue = "0", example = "0")
         @RequestParam(value = "pageIndex")
         int pageIndex,
@@ -82,5 +74,17 @@ public interface CarRentalControllerApi {
     );
 
     // Car APIs
+
+    @ApiOperation(value = "Update car rental history")
+    @PutMapping("/car/rental/update")
+    ResponseEntity<Boolean> updateCarRentalHistory(
+        @ApiParam(value = "Car number", required = true, example = "V666AD66")
+        @RequestParam(value = "carNumber")
+        String carNumber,
+
+        @ApiParam("Rental info")
+        @RequestBody
+        RentalInfoDto rentalInfoDto
+    );
 
 }

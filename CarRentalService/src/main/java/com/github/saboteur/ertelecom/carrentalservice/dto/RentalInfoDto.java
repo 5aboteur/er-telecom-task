@@ -1,14 +1,14 @@
 package com.github.saboteur.ertelecom.carrentalservice.dto;
 
-public class RentInfoDto {
+public class RentalInfoDto {
     private String branchCode;
     private String dateStart;
     private String dateEnd;
     private String renterFullName;
 
-    public RentInfoDto() { }
+    public RentalInfoDto() { }
 
-    public RentInfoDto(String branchCode, String dateStart, String dateEnd, String renterFullName) {
+    public RentalInfoDto(String branchCode, String dateStart, String dateEnd, String renterFullName) {
         this.branchCode = branchCode;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;

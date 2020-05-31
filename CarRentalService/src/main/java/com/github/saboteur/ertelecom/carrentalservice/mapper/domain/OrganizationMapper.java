@@ -1,6 +1,7 @@
 package com.github.saboteur.ertelecom.carrentalservice.mapper.domain;
 
 import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationDto;
+import com.github.saboteur.ertelecom.carrentalservice.dto.OrganizationShortDto;
 import com.github.saboteur.ertelecom.carrentalservice.mapper.Mapper;
 import com.github.saboteur.ertelecom.carrentalservice.model.Organization;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,14 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDto>
                     .stream()
                     .map(carMapper::convertToEntity)
                     .collect(Collectors.toList())
+        );
+    }
+
+    public OrganizationShortDto convertToShortDto(Organization entity) {
+        return new OrganizationShortDto(
+            entity.getType(),
+            entity.getName(),
+            entity.getInn()
         );
     }
 

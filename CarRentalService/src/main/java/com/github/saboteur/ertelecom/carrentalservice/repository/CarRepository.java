@@ -1,12 +1,12 @@
 package com.github.saboteur.ertelecom.carrentalservice.repository;
 
-import com.github.saboteur.ertelecom.carrentalservice.model.Organization;
+import com.github.saboteur.ertelecom.carrentalservice.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface OrganizationRepository extends JpaRepository<Organization, Long> {
-    Optional<Organization> findByInn(String inn);
+public interface CarRepository extends JpaRepository<Car, Long> {
+    Optional<Car> findByNumber(String number);
 }

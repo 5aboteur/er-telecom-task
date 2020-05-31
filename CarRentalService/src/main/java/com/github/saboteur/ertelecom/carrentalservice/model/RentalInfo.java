@@ -9,10 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
-@Table(name = "rent_info")
-public class RentInfo extends BaseModel {
+@Table(name = "rental_info")
+public class RentalInfo extends BaseModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Car car;
@@ -30,9 +31,9 @@ public class RentInfo extends BaseModel {
     @JoinColumn(name = "renter_full_name_id", nullable = false)
     private Name renterFullName;
 
-    public RentInfo() { }
+    public RentalInfo() { }
 
-    public RentInfo(String branchCode, LocalDateTime dateStart, LocalDateTime dateEnd, Name renterFullName) {
+    public RentalInfo(String branchCode, LocalDateTime dateStart, LocalDateTime dateEnd, Name renterFullName) {
         this.branchCode = branchCode;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
@@ -53,6 +54,22 @@ public class RentInfo extends BaseModel {
 
     public Name getRenterFullName() {
         return renterFullName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RentalInfo that = (RentalInfo) o;
+        return branchCode.equals(that.branchCode) &&
+            dateStart.equals(that.dateStart) &&
+            dateEnd.equals(that.dateEnd) &&
+            renterFullName.equals(that.renterFullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(branchCode, dateStart, dateEnd, renterFullName);
     }
 
 }
